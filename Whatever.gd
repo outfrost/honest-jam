@@ -15,7 +15,7 @@ const WIDTH: float = 1920.0
 const HEIGHT: float = 1080.0
 const PIN: PackedScene = preload("res://Pin.tscn")
 const EDGE: PackedScene = preload("res://Edge.tscn")
-const NUM_POINTS: int = 512
+const NUM_POINTS: int = 32
 const MIN_DEG: int = 2
 const MAX_DEG: int = 5
 
@@ -34,6 +34,7 @@ func _ready() -> void:
 		var pin = PIN.instance()
 		pin.position = pos
 		add_child(pin)
+		pin.owner = self
 	for idx in range(points.size()):
 		var point = points[idx]
 		var deg = rng.randi_range(MIN_DEG, MAX_DEG)
@@ -51,9 +52,17 @@ func _ready() -> void:
 				edge.end = other_idx
 				edge.update_line(self)
 				add_child(edge)
+				edge.owner = self
 				point.links.append(edge)
 				other.links.append(edge)
 			i += 1
+	call_deferred("save")
+
+func save() -> void:
+	var scn = PackedScene.new()
+	scn.pack(self)
+	ResourceSaver.save("res://City.tscn", scn)
+#	ResourceSaver.save("res://City.tscn", scn, ResourceSaver.FLAG_BUNDLE_RESOURCES)
 
 func closest(idx: int) -> Array:
 	var pos: Vector2 = points[idx].pos
