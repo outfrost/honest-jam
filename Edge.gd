@@ -4,8 +4,8 @@ var start: int
 var end: int
 
 func update_line(whatever):
-	var start_pos = whatever.points[start].pos
-	var end_pos = whatever.points[end].pos
+	var start_pos = whatever.points[start].position
+	var end_pos = whatever.points[end].position
 	points[0] = start_pos
 	points[1] = end_pos
 	var collider = $StaticBody2D/CollisionShape2D
