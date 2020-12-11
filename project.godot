@@ -9,20 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Line2D",
+"class": "Edge",
+"language": "GDScript",
+"path": "res://Edge.gd"
+}, {
 "base": "Node2D",
 "class": "Point",
 "language": "GDScript",
 "path": "res://Point.gd"
 } ]
 _global_script_class_icons={
+"Edge": "",
 "Point": ""
 }
 
 [application]
 
-config/name="HonestJam"
+config/name="Instant Noodles"
 run/main_scene="res://Whatever.tscn"
+boot_splash/bg_color=Color( 0.0470588, 0.0470588, 0.0784314, 1 )
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
@@ -38,4 +49,5 @@ quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.352941, 0.352941, 0.352941, 1 )
 environment/default_environment="res://default_env.tres"

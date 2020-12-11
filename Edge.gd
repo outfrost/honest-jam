@@ -1,14 +1,11 @@
+class_name Edge
 extends Line2D
 
-var start: int
-var end: int
+export var start: NodePath
+export var end: NodePath
 
-func update_line(whatever):
-	var start_pos = whatever.points[start].position
-	var end_pos = whatever.points[end].position
+func update_line():
+	var start_pos = get_node(start).position
+	var end_pos = get_node(end).position
 	points[0] = start_pos
 	points[1] = end_pos
-	var collider = $StaticBody2D/CollisionShape2D
-	collider.shape = collider.shape.duplicate()
-	(collider.shape as SegmentShape2D).a = start_pos
-	(collider.shape as SegmentShape2D).b = end_pos
